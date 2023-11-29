@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<style>
+	:root { font-size: 24pt }
+	button { font: inherit }
+</style>
+
+<button onclick="update()">🌐</button>
+
+<code></code>
+
+<ul>
+	<li data-en="Hello world!" data-cs="Ahoj světe!"></li>
+	<li data-en="minute" data-cs="minuta;minuty;minut" data-numvalue="5"></li>
+</ul>
+
+<input type="range" min="-10" max="10" step="1" value="5" oninput="">
+
+<script src="language.js"></script>
+
+<script>
+	const input = document.querySelector("input");
+	const output = document.querySelector("[data-numvalue]");
+	const display = document.querySelector("code");
+	
+	function update(numbersOnly=false) {
+		output.dataset.numvalue = input.value;
+		let result = switchLanguage(undefined, numbersOnly);
+		display.innerText = JSON.stringify(result);
+	}
+	
+	input.addEventListener("input", update);
+	window.addEventListener("load", update);
+</script>
